@@ -1,5 +1,8 @@
 // Researched 2026-09-26 from vendor pricing pages. Prices are USD list prices; GBP-only plans are converted at the
 // FX snapshot. G2 ratings come from search snippets (G2 blocks direct reads). See each product's sources and confidence note.
+// PRICE CURRENCY RULE: every record has "currency": "USD", and every numeric price field (price, annual, minMonthly,
+// cheapestPaidUSD) must be in US dollars. Convert GBP/EUR/etc. with src/data/fx.js before writing; local-currency
+// amounts (e.g. "£49/mo") belong only in quota/highlight text, never in the numeric fields.
 export default [
   {
     "id": "shiptheory",
@@ -8,6 +11,7 @@ export default [
     "url": "https://shiptheory.com/pricing",
     "category": "shipping",
     "pricingModel": "subscription",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Pluto",
@@ -101,6 +105,7 @@ export default [
     "url": "https://www.shipstation.com/pricing/",
     "category": "shipping",
     "pricingModel": "subscription",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free (UK only)",
@@ -178,6 +183,7 @@ export default [
     "url": "https://goshippo.com/pricing",
     "category": "shipping",
     "pricingModel": "hybrid",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Starter",
@@ -248,6 +254,7 @@ export default [
     "url": "https://www.sendcloud.com/en-uk/pricing/",
     "category": "shipping",
     "pricingModel": "hybrid",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -340,6 +347,7 @@ export default [
     "url": "https://www.veeqo.com/pricing",
     "category": "shipping",
     "pricingModel": "hybrid",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Shipping",
@@ -408,6 +416,7 @@ export default [
     "url": "https://www.easyship.com/plans",
     "category": "shipping",
     "pricingModel": "hybrid",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -493,6 +502,7 @@ export default [
     "url": "https://www.pirateship.com/",
     "category": "shipping",
     "pricingModel": "usage",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -547,6 +557,7 @@ export default [
     "url": "https://shippingeasy.com/pricing/",
     "category": "shipping",
     "pricingModel": "subscription",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Starter",

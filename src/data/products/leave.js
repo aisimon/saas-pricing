@@ -1,4 +1,7 @@
 // Researched 2026-09-26. Prices are USD list prices; see each product's sources and confidence note.
+// PRICE CURRENCY RULE: every record has "currency": "USD", and every numeric price field (price, annual, minMonthly,
+// cheapestPaidUSD) must be in US dollars. Convert GBP/EUR/etc. with src/data/fx.js before writing; local-currency
+// amounts (e.g. "£49/mo") belong only in quota/highlight text, never in the numeric fields.
 export default [
   {
     "id": "vacation_tracker",
@@ -7,6 +10,7 @@ export default [
     "url": "https://vacationtracker.io/pricing/",
     "category": "leave",
     "pricingModel": "per_seat",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -111,6 +115,7 @@ export default [
     "url": "https://timetastic.co.uk/pricing/",
     "category": "leave",
     "pricingModel": "per_seat",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Timetastic",
@@ -202,6 +207,7 @@ export default [
     "url": "https://day-off.app/pricing/",
     "category": "leave",
     "pricingModel": "per_seat",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -292,6 +298,7 @@ export default [
     "url": "https://www.bamboohr.com/pricing/",
     "category": "leave",
     "pricingModel": "per_seat",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Core",
@@ -398,6 +405,7 @@ export default [
     "url": "https://www.deel.com/pricing",
     "category": "leave",
     "pricingModel": "hybrid",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Deel HR (Free)",

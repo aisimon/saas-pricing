@@ -38,6 +38,7 @@ npm run build    # production build in dist/
 ## Data
 
 - `src/data/products/<category>.js`: English product data (tiers, metrics, ratings, editorial scores, sources, confidence note).
+  Every record carries `"currency": "USD"` and all numeric price fields are US dollars; convert other currencies with `src/data/fx.js` before writing them (the app refuses to load any other currency).
 - `src/data/products/<category>.zh.js`: Traditional Chinese text for each product.
 - `src/data/categories.js`: each category's comparison metrics and the "winner" insights it derives.
 - `vacation-tracker-products.js`: the original leave-tracker dataset this project started from.

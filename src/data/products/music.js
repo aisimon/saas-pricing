@@ -1,4 +1,7 @@
 // Researched 2026-09-26. Prices are USD list prices; see each product's sources and confidence note.
+// PRICE CURRENCY RULE: every record has "currency": "USD", and every numeric price field (price, annual, minMonthly,
+// cheapestPaidUSD) must be in US dollars. Convert GBP/EUR/etc. with src/data/fx.js before writing; local-currency
+// amounts (e.g. "£49/mo") belong only in quota/highlight text, never in the numeric fields.
 export default [
   {
     "id": "suno",
@@ -7,6 +10,7 @@ export default [
     "url": "https://suno.com",
     "category": "music",
     "pricingModel": "hybrid",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -115,6 +119,7 @@ export default [
     "url": "https://www.udio.com",
     "category": "music",
     "pricingModel": "credits",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -216,6 +221,7 @@ export default [
     "url": "https://www.aiva.ai",
     "category": "music",
     "pricingModel": "subscription",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -318,6 +324,7 @@ export default [
     "url": "https://soundraw.io",
     "category": "music",
     "pricingModel": "subscription",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Creator",
@@ -442,6 +449,7 @@ export default [
     "url": "https://boomy.com",
     "category": "music",
     "pricingModel": "subscription",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -541,6 +549,7 @@ export default [
     "url": "https://mubert.com",
     "category": "music",
     "pricingModel": "subscription",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Ambassador (Free)",
@@ -652,6 +661,7 @@ export default [
     "url": "https://www.beatoven.ai",
     "category": "music",
     "pricingModel": "hybrid",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",

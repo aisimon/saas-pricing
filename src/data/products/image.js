@@ -1,4 +1,7 @@
 // Researched 2026-09-26. Prices are USD list prices; see each product's sources and confidence note.
+// PRICE CURRENCY RULE: every record has "currency": "USD", and every numeric price field (price, annual, minMonthly,
+// cheapestPaidUSD) must be in US dollars. Convert GBP/EUR/etc. with src/data/fx.js before writing; local-currency
+// amounts (e.g. "£49/mo") belong only in quota/highlight text, never in the numeric fields.
 export default [
   {
     "id": "adobe_photoshop",
@@ -7,6 +10,7 @@ export default [
     "url": "https://www.adobe.com/products/photoshop.html",
     "category": "image",
     "pricingModel": "subscription",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Photography plan",
@@ -127,6 +131,7 @@ export default [
     "url": "https://www.canva.com",
     "category": "image",
     "pricingModel": "per_seat",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -248,6 +253,7 @@ export default [
     "url": "https://www.midjourney.com",
     "category": "image",
     "pricingModel": "subscription",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Basic",
@@ -361,6 +367,7 @@ export default [
     "url": "https://picsart.com",
     "category": "image",
     "pricingModel": "hybrid",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -467,6 +474,7 @@ export default [
     "url": "https://www.photoroom.com",
     "category": "image",
     "pricingModel": "hybrid",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -591,6 +599,7 @@ export default [
     "url": "https://pixlr.com",
     "category": "image",
     "pricingModel": "hybrid",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -715,6 +724,7 @@ export default [
     "url": "https://www.fotor.com",
     "category": "image",
     "pricingModel": "hybrid",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -822,6 +832,7 @@ export default [
     "url": "https://www.affinity.studio",
     "category": "image",
     "pricingModel": "hybrid",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",

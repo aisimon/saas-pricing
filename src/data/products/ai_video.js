@@ -1,4 +1,7 @@
 // Researched 2026-09-26. Prices are USD list prices; see each product's sources and confidence note.
+// PRICE CURRENCY RULE: every record has "currency": "USD", and every numeric price field (price, annual, minMonthly,
+// cheapestPaidUSD) must be in US dollars. Convert GBP/EUR/etc. with src/data/fx.js before writing; local-currency
+// amounts (e.g. "£49/mo") belong only in quota/highlight text, never in the numeric fields.
 export default [
   {
     "id": "runway",
@@ -7,6 +10,7 @@ export default [
     "url": "https://runway.com/pricing",
     "category": "ai_video",
     "pricingModel": "hybrid",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -135,6 +139,7 @@ export default [
     "url": "https://pika.art/pricing",
     "category": "ai_video",
     "pricingModel": "credits",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Basic (Free)",
@@ -245,6 +250,7 @@ export default [
     "url": "https://lumalabs.ai/pricing",
     "category": "ai_video",
     "pricingModel": "credits",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Plus",
@@ -355,6 +361,7 @@ export default [
     "url": "https://kling.ai/app/membership/membership-plan",
     "category": "ai_video",
     "pricingModel": "credits",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -472,6 +479,7 @@ export default [
     "url": "https://www.synthesia.io/pricing",
     "category": "ai_video",
     "pricingModel": "per_seat",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -584,6 +592,7 @@ export default [
     "url": "https://www.heygen.com/pricing",
     "category": "ai_video",
     "pricingModel": "hybrid",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
@@ -704,6 +713,7 @@ export default [
     "url": "https://gemini.google/subscriptions/",
     "category": "ai_video",
     "pricingModel": "subscription",
+    "currency": "USD",
     "tiers": [
       {
         "name": "Free",
