@@ -2,6 +2,7 @@
 // PRICE CURRENCY RULE: every record has "currency": "USD", and every numeric price field (price, annual, minMonthly,
 // cheapestPaidUSD) must be in US dollars. Convert GBP/EUR/etc. with src/data/fx.js before writing; local-currency
 // amounts (e.g. "£49/mo") belong only in quota/highlight text, never in the numeric fields.
+// "lastUpdated" (YYYY-MM-DD) is the date the record's data was last checked; set it whenever you change the record.
 export default [
   {
     "id": "vacation_tracker",
@@ -11,6 +12,7 @@ export default [
     "category": "leave",
     "pricingModel": "per_seat",
     "currency": "USD",
+    "lastUpdated": "2026-09-26",
     "tiers": [
       {
         "name": "Free",
@@ -116,6 +118,7 @@ export default [
     "category": "leave",
     "pricingModel": "per_seat",
     "currency": "USD",
+    "lastUpdated": "2026-09-26",
     "tiers": [
       {
         "name": "Timetastic",
@@ -208,6 +211,7 @@ export default [
     "category": "leave",
     "pricingModel": "per_seat",
     "currency": "USD",
+    "lastUpdated": "2026-09-26",
     "tiers": [
       {
         "name": "Free",
@@ -299,6 +303,7 @@ export default [
     "category": "leave",
     "pricingModel": "per_seat",
     "currency": "USD",
+    "lastUpdated": "2026-09-26",
     "tiers": [
       {
         "name": "Core",
@@ -406,6 +411,7 @@ export default [
     "category": "leave",
     "pricingModel": "hybrid",
     "currency": "USD",
+    "lastUpdated": "2026-09-26",
     "tiers": [
       {
         "name": "Deel HR (Free)",

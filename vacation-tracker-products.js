@@ -11,6 +11,7 @@ const vacationTrackerProducts = [
     type: "Dedicated leave tracker",
     pricingModel: "Per active user per month, with minimum monthly charge",
     currency: "USD",
+    lastUpdated: "2026-09-26",
     entryPriceUSD: 2.0,
     entryPriceNote: "$2/user/month (Core), $50/month minimum; annual billing ≈10% discount",
     tiers: [
@@ -42,6 +43,7 @@ const vacationTrackerProducts = [
     type: "Dedicated leave tracker",
     pricingModel: "Flat per‑user per month, no minimum",
     currency: "USD",
+    lastUpdated: "2026-09-26",
     entryPriceUSD: 1.5,
     entryPriceNote: "$1.50–$2.50/user/month depending on plan; no free tier, no minimum",
     tiers: [
@@ -67,6 +69,7 @@ const vacationTrackerProducts = [
     type: "Dedicated leave tracker",
     pricingModel: "Per‑user per month with small minimum",
     currency: "USD",
+    lastUpdated: "2026-09-26",
     entryPriceUSD: 2.0,
     entryPriceNote: "From ~$2/user/month with ~$20/month minimum; free tier for very small teams",
     tiers: [
@@ -92,6 +95,7 @@ const vacationTrackerProducts = [
     type: "All‑in‑one HRIS with leave module",
     pricingModel: "Per employee per month, often with minimum monthly charge",
     currency: "USD",
+    lastUpdated: "2026-09-26",
     entryPriceUSD: 10.0,
     entryPriceNote: "From ~$10/employee/month; often ~$250/month minimum for small accounts",
     tiers: [
@@ -117,6 +121,7 @@ const vacationTrackerProducts = [
     type: "Global HR/payroll platform with time‑off",
     pricingModel: "Per user per month; HR module sometimes free, paid via payroll/add‑ons",
     currency: "USD",
+    lastUpdated: "2026-09-26",
     entryPriceUSD: 5.0,
     entryPriceNote: "HR/time‑off features often bundled; payroll from ~$5/employee/month; pricing can be modular",
     tiers: [
