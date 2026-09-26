@@ -1,4 +1,6 @@
-[
+// Researched 2026-09-26 from vendor pricing pages. Prices are USD list prices; GBP-only plans are converted at the
+// FX snapshot. G2 ratings come from search snippets (G2 blocks direct reads). See each product's sources and confidence note.
+export default [
   {
     "id": "shiptheory",
     "name": "Shiptheory",
@@ -9,40 +11,40 @@
     "tiers": [
       {
         "name": "Pluto",
-        "price": 25,
-        "annual": 19,
+        "price": 33.12,
+        "annual": 25.17,
         "perSeat": false,
         "quota": "£19/mo (£25 monthly); up to 250 shipments/month, 1 user, 1 channel, 1 carrier; £0.03 per shipment",
         "highlights": ["1 sales channel", "1 carrier", "Email support"]
       },
       {
         "name": "Earth",
-        "price": 49,
-        "annual": 39,
+        "price": 62,
+        "annual": 50,
         "perSeat": false,
         "quota": "£39/mo (£49 monthly); up to 1,500 shipments/month, 1 user, 1 channel, 2 carriers; £0.03 per shipment",
         "highlights": ["1 sales channel", "2 carriers", "Email support"]
       },
       {
         "name": "Saturn",
-        "price": 119,
-        "annual": 99,
+        "price": 150,
+        "annual": 125,
         "perSeat": false,
         "quota": "£99/mo (£119 monthly); up to 3,000 shipments/month, 3 users, 3 channels, unlimited carriers; £0.03 per shipment",
         "highlights": ["3 sales channels", "Unlimited carriers", "Tailored onboarding"]
       },
       {
         "name": "Jupiter",
-        "price": 255,
-        "annual": 217,
+        "price": 325,
+        "annual": 275,
         "perSeat": false,
         "quota": "£217/mo (£255 monthly); up to 8,000 shipments/month, 10 users, unlimited channels/carriers; £0.02 per shipment",
         "highlights": ["Unlimited channels and carriers", "10 users", "Phone support", "Tailored onboarding"]
       },
       {
         "name": "Cosmos",
-        "price": 590,
-        "annual": 433,
+        "price": 750,
+        "annual": 550,
         "perSeat": false,
         "quota": "£433/mo (£590 monthly); up to 20,000 shipments/month, unlimited users/channels/carriers; £0.02 per shipment",
         "highlights": ["ERP, API and WMS plan", "Unlimited channels and carriers", "Branded tracking", "Extended support"]
@@ -59,7 +61,7 @@
     "metrics": {
       "regions": ["UK", "EU", "US"],
       "pricingBasis": "Monthly plan sized by shipment volume (20% off annually); bring your own carrier accounts",
-      "cheapestPaidUSD": 62,
+      "cheapestPaidUSD": 33.12,
       "entryShipments": 250,
       "usersIncluded": 1,
       "ukCarriers": ["Royal Mail", "Parcelforce", "DPD", "Evri", "DHL", "Whistl", "UPS", "FedEx"],
@@ -85,7 +87,7 @@
     "strategy": "Monthly plans sized by shipment volume, with channel, carrier and user limits rising per tier; revenue comes from subscriptions rather than postage mark-up.",
     "strengths": ["Deep UK carrier coverage", "Generous shipment allowance on entry plans", "Excellent review scores"],
     "weaknesses": ["No discounted postage of its own", "Entry plan limited to 1 user, 1 channel and 1–2 carriers", "No free plan (14-day trial only)"],
-    "confidence": "high - plans and GBP prices read from shiptheory.com/pricing on 2026-09-26; USD converted at FX snapshot; G2 rating from search snippet",
+    "confidence": "high - plans and GBP prices read from shiptheory.com/pricing on 2026-09-26; USD from the vendor's own USD prices, except Pluto (converted from GBP at the FX snapshot); G2 rating from search snippet",
     "sources": [
       "https://shiptheory.com/pricing",
       "https://uk.trustpilot.com/review/shiptheory.com",
