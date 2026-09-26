@@ -30,6 +30,10 @@ npm run dev      # local dev server
 npm run build    # production build in dist/
 ```
 
+## Deploy
+
+`.github/workflows/deploy-pages.yml` builds the app and publishes `dist/` to GitHub Pages on every push to `main`, and can also be run by hand from the Actions tab. Turn it on once under **Settings → Pages → Source: GitHub Actions**. The site is served at `https://aisimon.github.io/saas-pricing/`.
+
 ## Data
 
 - `src/data/products/<category>.js`: English product data (tiers, metrics, ratings, editorial scores, sources, confidence note).
