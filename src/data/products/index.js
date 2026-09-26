@@ -1,21 +1,43 @@
-import leave from './leave.js'
-import leaveZh from './leave.zh.js'
+import { shallowReactive } from 'vue'
+import { CATEGORIES } from '../categories.js'
 import aiAssistant from './ai_assistant.js'
 import aiAssistantZh from './ai_assistant.zh.js'
-import aiVideo from './ai_video.js'
-import aiVideoZh from './ai_video.zh.js'
-import music from './music.js'
-import musicZh from './music.zh.js'
-import image from './image.js'
-import imageZh from './image.zh.js'
-import shipping from './shipping.js'
-import shippingZh from './shipping.zh.js'
 
-const zh = { ...leaveZh, ...aiAssistantZh, ...aiVideoZh, ...musicZh, ...imageZh, ...shippingZh }
+// AI tools ship in the main bundle so they render on first paint; every other category is its own chunk,
+// fetched by loadRemainingCategories() after mount and merged in as it arrives.
+const LOADERS = {
+  ai_video: () => Promise.all([import('./ai_video.js'), import('./ai_video.zh.js')]),
+  image: () => Promise.all([import('./image.js'), import('./image.zh.js')]),
+  music: () => Promise.all([import('./music.js'), import('./music.zh.js')]),
+  leave: () => Promise.all([import('./leave.js'), import('./leave.zh.js')]),
+  shipping: () => Promise.all([import('./shipping.js'), import('./shipping.zh.js')]),
+}
 
-export const PRODUCTS = [...leave, ...aiAssistant, ...aiVideo, ...music, ...image, ...shipping].map((p) => ({ ...p, zh: zh[p.id] }))
+export const PRODUCTS = shallowReactive([])
+export const PRODUCT_BY_ID = shallowReactive({})
+export const LOADED = shallowReactive(new Set())
 
-// Prices are converted from USD for display, so a record in any other currency would show wrong amounts.
-const nonUsd = PRODUCTS.filter((p) => p.currency !== 'USD').map((p) => p.id)
-if (nonUsd.length) throw new Error(`Product prices must be USD (currency: "USD"); check: ${nonUsd.join(', ')}`)
-export const PRODUCT_BY_ID = Object.fromEntries(PRODUCTS.map((p) => [p.id, p]))
+const byCategory = {}
+
+function add(category, list, zh) {
+  // Prices are converted from USD for display, so a record in any other currency would show wrong amounts.
+  const nonUsd = list.filter((p) => p.currency !== 'USD').map((p) => p.id)
+  if (nonUsd.length) throw new Error(`Product prices must be USD (currency: "USD"); check: ${nonUsd.join(', ')}`)
+  byCategory[category] = list.map((p) => ({ ...p, zh: zh[p.id] }))
+  for (const p of byCategory[category]) PRODUCT_BY_ID[p.id] = p
+  // Keep PRODUCTS in category order regardless of which chunk lands first.
+  PRODUCTS.splice(0, PRODUCTS.length, ...CATEGORIES.flatMap((c) => byCategory[c.id] || []))
+  LOADED.add(category)
+}
+
+add('ai_assistant', aiAssistant, aiAssistantZh)
+
+export function loadRemainingCategories() {
+  return Promise.all(
+    Object.entries(LOADERS).map(([id, load]) =>
+      load()
+        .then(([en, zh]) => add(id, en.default, zh.default))
+        .catch((err) => console.error(`Failed to load ${id} products`, err)),
+    ),
+  )
+}

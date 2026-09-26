@@ -3,38 +3,6 @@ const m = (key, type, better, en, zh) => ({ key, type, better, label: { en, zh }
 
 export const CATEGORIES = [
   {
-    id: 'leave',
-    glyph: '◷',
-    name: { en: 'Leave tracking', zh: '假期管理' },
-    lens: {
-      en: 'Compared on per-seat price, minimum charges, free-plan size, chat integrations, accruals and HR breadth.',
-      zh: '按每席位價格、最低收費、免費方案規模、通訊工具整合、假期累計及人事功能廣度比較。',
-    },
-    margin: 0.85,
-    cardMetrics: ['freeTierUserLimit', 'slackTeams', 'accruals'],
-    metrics: [
-      m('freeTierUserLimit', 'freeLimit', 'higher', 'Free plan user limit', '免費方案用戶上限'),
-      m('slackTeams', 'bool', 'true', 'Slack / Teams app', 'Slack / Teams 整合'),
-      m('accruals', 'bool', 'true', 'Leave accruals', '假期累計'),
-      m('halfDayHourly', 'bool', 'true', 'Half-day / hourly leave', '半日 / 按小時請假'),
-      m('mobileApp', 'bool', 'true', 'Native mobile app', '原生手機應用程式'),
-      m('calendarSync', 'list', 'higher', 'Calendar sync', '日曆同步'),
-      m('approvalWorkflowLevels', 'text', null, 'Approval workflow', '審批流程'),
-      m('reportingDepth', 'score', 'higher', 'Reporting depth', '報表深度'),
-      m('hrisBreadth', 'score', null, 'HR suite breadth', '人事系統廣度'),
-      m('publicHolidayCountries', 'text', null, 'Public holiday coverage', '公眾假期覆蓋'),
-    ],
-    derived: [
-      {
-        id: 'lowestMin',
-        label: { en: 'Lowest minimum charge', zh: '最低收費門檻最低' },
-        better: 'lower',
-        type: 'money',
-        value: (p, ctx) => ctx.tier(p)?.minMonthly ?? 0,
-      },
-    ],
-  },
-  {
     id: 'ai_assistant',
     glyph: '✦',
     name: { en: 'AI tools', zh: 'AI 工具' },
@@ -73,6 +41,38 @@ export const CATEGORIES = [
         better: 'lower',
         type: 'money',
         value: (p) => p.metrics.teamSeatPriceUSD,
+      },
+    ],
+  },
+  {
+    id: 'leave',
+    glyph: '◷',
+    name: { en: 'Leave tracking', zh: '假期管理' },
+    lens: {
+      en: 'Compared on per-seat price, minimum charges, free-plan size, chat integrations, accruals and HR breadth.',
+      zh: '按每席位價格、最低收費、免費方案規模、通訊工具整合、假期累計及人事功能廣度比較。',
+    },
+    margin: 0.85,
+    cardMetrics: ['freeTierUserLimit', 'slackTeams', 'accruals'],
+    metrics: [
+      m('freeTierUserLimit', 'freeLimit', 'higher', 'Free plan user limit', '免費方案用戶上限'),
+      m('slackTeams', 'bool', 'true', 'Slack / Teams app', 'Slack / Teams 整合'),
+      m('accruals', 'bool', 'true', 'Leave accruals', '假期累計'),
+      m('halfDayHourly', 'bool', 'true', 'Half-day / hourly leave', '半日 / 按小時請假'),
+      m('mobileApp', 'bool', 'true', 'Native mobile app', '原生手機應用程式'),
+      m('calendarSync', 'list', 'higher', 'Calendar sync', '日曆同步'),
+      m('approvalWorkflowLevels', 'text', null, 'Approval workflow', '審批流程'),
+      m('reportingDepth', 'score', 'higher', 'Reporting depth', '報表深度'),
+      m('hrisBreadth', 'score', null, 'HR suite breadth', '人事系統廣度'),
+      m('publicHolidayCountries', 'text', null, 'Public holiday coverage', '公眾假期覆蓋'),
+    ],
+    derived: [
+      {
+        id: 'lowestMin',
+        label: { en: 'Lowest minimum charge', zh: '最低收費門檻最低' },
+        better: 'lower',
+        type: 'money',
+        value: (p, ctx) => ctx.tier(p)?.minMonthly ?? 0,
       },
     ],
   },

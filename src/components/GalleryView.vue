@@ -2,7 +2,7 @@
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { state } from '../store.js'
 import { t, tx, pText } from '../i18n/index.js'
-import { PRODUCTS } from '../data/products/index.js'
+import { LOADED, PRODUCTS } from '../data/products/index.js'
 import { CATEGORIES, CATEGORY_BY_ID } from '../data/categories.js'
 import { entryPrice, hasFreeTier, reputation } from '../lib/pricing.js'
 import { FX } from '../data/fx.js'
@@ -55,7 +55,13 @@ const grouped = computed(() => {
 })
 
 const counts = computed(() =>
-  Object.fromEntries(CATEGORIES.map((c) => [c.id, PRODUCTS.filter((p) => p.category === c.id).length])),
+  Object.fromEntries(
+    CATEGORIES.map((c) => [c.id, LOADED.has(c.id) ? PRODUCTS.filter((p) => p.category === c.id).length : '…']),
+  ),
+)
+// Categories still streaming in that the current filter would show.
+const pending = computed(() =>
+  CATEGORIES.filter((c) => !LOADED.has(c.id) && (state.category === 'all' || state.category === c.id)),
 )
 const categoryCount = computed(() => new Set(filtered.value.map((p) => p.category)).size)
 
@@ -137,7 +143,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
     <p class="results mono" aria-live="polite">{{ t('results', { n: filtered.length, c: categoryCount }) }}</p>
   </section>
 
-  <div v-if="!filtered.length" class="empty">
+  <div v-if="!filtered.length && !pending.length" class="empty">
     <p>{{ t('noResults') }}</p>
     <button type="button" class="btn" @click="clearFilters">{{ t('clearFilters') }}</button>
   </div>
@@ -157,6 +163,10 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
   <div v-else class="grid">
     <ProductCard v-for="p in filtered" :key="p.id" :product="p" show-category />
   </div>
+
+  <p v-if="pending.length" class="loading mono" aria-live="polite">
+    {{ t('gallery.loading', { list: pending.map((c) => tx(c.name)).join(' · ') }) }}
+  </p>
 </template>
 
 <style scoped>
@@ -320,6 +330,11 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
   gap: 16px;
+}
+.loading {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--muted);
 }
 .empty {
   padding: 48px 0;
