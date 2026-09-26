@@ -2,8 +2,10 @@ export function tierUnitPrice(tier, billing) {
   return billing === 'annual' && tier.annual != null ? tier.annual : tier.price
 }
 
+export const availableFor = (tier, billing) => !(tier.annualOnly && billing !== 'annual')
+
 export function tierCost(tier, users, billing) {
-  if (!tier || tier.custom || tier.price == null) return null
+  if (!tier || tier.custom || tier.price == null || !availableFor(tier, billing)) return null
   if (tier.maxUsers && users > tier.maxUsers) return null
   const unit = tierUnitPrice(tier, billing)
   const seats = Math.max(Math.max(users, tier.minSeats || 1) - (tier.freeSeats || 0), 0)
@@ -12,39 +14,41 @@ export function tierCost(tier, users, billing) {
   return Math.max(base, tier.minMonthly || 0)
 }
 
-export const paidTiers = (p) => p.tiers.filter((t) => !t.custom && t.price > 0)
+export const paidTiers = (p, billing = 'monthly') =>
+  p.tiers.filter((t) => !t.custom && t.price > 0 && availableFor(t, billing))
 export const hasFreeTier = (p) => p.tiers.some((t) => t.price === 0 && !t.custom)
 
-export function entryPrice(p) {
-  const prices = paidTiers(p).map((t) => t.price)
+export function entryPrice(p, billing = 'monthly') {
+  const prices = paidTiers(p, billing).map((t) => tierUnitPrice(t, billing))
   return prices.length ? Math.min(...prices) : null
 }
 
-export function topPrice(p) {
-  const prices = paidTiers(p).map((t) => t.price)
+export function topPrice(p, billing = 'monthly') {
+  const prices = paidTiers(p, billing).map((t) => tierUnitPrice(t, billing))
   return prices.length ? Math.max(...prices) : null
 }
 
-export function defaultTierIndex(p) {
-  const i = p.tiers.findIndex((t) => !t.custom && t.price > 0)
+export function defaultTierIndex(p, billing = 'monthly') {
+  const i = p.tiers.findIndex((t) => !t.custom && t.price > 0 && availableFor(t, billing))
   return i === -1 ? 0 : i
 }
 
-export function resolveChoice(p, choice) {
+// Falls back to the default plan when the chosen one isn't sold under the current billing period.
+export function resolveChoice(p, choice, billing = 'monthly') {
   if (choice === 'auto') return 'auto'
-  const i = Number.isInteger(choice) && p.tiers[choice] ? choice : defaultTierIndex(p)
-  return i
+  const tier = Number.isInteger(choice) ? p.tiers[choice] : null
+  return tier && !tier.custom && availableFor(tier, billing) ? choice : defaultTierIndex(p, billing)
 }
 
 export function costAt(p, users, choice, billing) {
-  const c = resolveChoice(p, choice)
+  const c = resolveChoice(p, choice, billing)
   if (c !== 'auto') return tierCost(p.tiers[c], users, billing)
   const costs = p.tiers.map((t) => tierCost(t, users, billing)).filter((v) => v != null)
   return costs.length ? Math.min(...costs) : null
 }
 
 export function tierAt(p, users, choice, billing) {
-  const c = resolveChoice(p, choice)
+  const c = resolveChoice(p, choice, billing)
   if (c !== 'auto') return p.tiers[c]
   let best = null
   let bestCost = Infinity

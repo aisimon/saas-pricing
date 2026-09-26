@@ -132,4 +132,4 @@ const vacationTrackerProducts = [
   }
 ];
 
-module.exports = vacationTrackerProducts;
+export default vacationTrackerProducts;

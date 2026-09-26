@@ -12,7 +12,7 @@ const props = defineProps({ product: { type: Object, required: true }, showCateg
 
 const cat = computed(() => CATEGORY_BY_ID[props.product.category])
 const entry = computed(() => {
-  const tiers = paidTiers(props.product)
+  const tiers = paidTiers(props.product, state.billing)
   if (!tiers.length) return null
   return tiers.reduce((a, b) => (tierUnitPrice(b, state.billing) < tierUnitPrice(a, state.billing) ? b : a))
 })

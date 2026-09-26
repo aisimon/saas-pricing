@@ -36,7 +36,7 @@ const filtered = computed(() => {
     const h = haystack(p)
     return terms.every((term) => h.includes(term))
   })
-  const price = (p) => entryPrice(p) ?? (hasFreeTier(p) ? 0 : Infinity)
+  const price = (p) => entryPrice(p, state.billing) ?? (hasFreeTier(p) ? 0 : Infinity)
   const sorters = {
     priceAsc: (a, b) => price(a) - price(b),
     priceDesc: (a, b) => (price(b) === Infinity ? -1 : price(b)) - (price(a) === Infinity ? -1 : price(a)),

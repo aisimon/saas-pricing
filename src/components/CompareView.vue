@@ -6,12 +6,12 @@ import { PRODUCT_BY_ID } from '../data/products/index.js'
 import { CATEGORY_BY_ID } from '../data/categories.js'
 import {
   costAt,
-  defaultTierIndex,
+  availableFor,
   entryPrice,
   growthSeries,
   hasFreeTier,
-  paidTiers,
   reputation,
+  resolveChoice,
   tierAt,
   tierUnitPrice,
   topPrice,
@@ -35,7 +35,7 @@ const SAMPLES = [
 ]
 
 // ---------- plan choice & money helpers ----------
-const choiceOf = (p) => state.tierChoice[p.id] ?? defaultTierIndex(p)
+const choiceOf = (p) => resolveChoice(p, state.tierChoice[p.id], state.billing)
 function setChoice(p, v) {
   state.tierChoice = { ...state.tierChoice, [p.id]: v === 'auto' ? 'auto' : Number(v) }
 }
@@ -91,13 +91,10 @@ const groups = computed(() => {
         {
           id: 'entry',
           label: t('row.entry'),
-          cell: (p) => {
-            const tiers = paidTiers(p)
-            return tiers.length ? fm(Math.min(...tiers.map((x) => tierUnitPrice(x, state.billing)))) : dash
-          },
-          rank: (p) => (entryPrice(p) == null ? null : -Math.min(...paidTiers(p).map((x) => tierUnitPrice(x, state.billing)))),
+          cell: (p) => (entryPrice(p, state.billing) == null ? dash : fm(entryPrice(p, state.billing))),
+          rank: (p) => (entryPrice(p, state.billing) == null ? null : -entryPrice(p, state.billing)),
         },
-        { id: 'top', label: t('row.top'), cell: (p) => (topPrice(p) == null ? dash : fm(topPrice(p))) },
+        { id: 'top', label: t('row.top'), cell: (p) => (topPrice(p, state.billing) == null ? dash : fm(topPrice(p, state.billing))) },
         { id: 'plan', label: t('row.plan'), cell: (p) => tierN(p)?.name ?? dash },
         { id: 'min', label: t('row.min'), cell: (p) => (tierN(p)?.minMonthly ? fm(tierN(p).minMonthly) : dash) },
         {
@@ -439,7 +436,7 @@ function setGrowth(key, e, min, max) {
                   <span class="sr-only">{{ t('row.plan') }} – {{ p.name }}</span>
                   <select :id="'plan-' + p.id" class="select" :value="choiceOf(p)" @change="setChoice(p, $event.target.value)">
                     <option value="auto">{{ t('plan.auto') }}</option>
-                    <option v-for="(tier, i) in p.tiers" :key="tier.name" :value="i" :disabled="tier.custom">{{ tierOptionLabel(tier) }}</option>
+                    <option v-for="(tier, i) in p.tiers" :key="tier.name" :value="i" :disabled="tier.custom || !availableFor(tier, state.billing)">{{ tierOptionLabel(tier) }}</option>
                   </select>
                 </label>
               </th>
