@@ -83,7 +83,7 @@ const en = {
   'modal.plans': 'Plans',
   'modal.plan': 'Plan',
   'modal.price': 'Price / user / mo',
-  'modal.priceAccount': 'Price / account / mo',
+  'modal.priceAccount': 'Price / acc / mo',
   'modal.annual': 'Billed annually',
   'modal.minimum': 'Minimum',
   'modal.users': 'User limit',
