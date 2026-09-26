@@ -76,6 +76,7 @@ const items = computed(() => state.compare.map((id) => PRODUCT_BY_ID[id]).filter
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--bg);
+  white-space: nowrap;
 }
 .x {
   border: 0;
@@ -95,5 +96,37 @@ const items = computed(() => state.compare.map((id) => PRODUCT_BY_ID[id]).filter
 .btns {
   display: flex;
   gap: 6px;
+}
+/* On phones the chips get their own swipeable row instead of being squeezed between the label and buttons. */
+@media (max-width: 640px) {
+  .inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'label btns'
+      'list list';
+    gap: 8px 12px;
+    padding-block: 10px;
+  }
+  .label {
+    grid-area: label;
+  }
+  .btns {
+    grid-area: btns;
+  }
+  .list {
+    grid-area: list;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+    mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+  }
+  .list::-webkit-scrollbar {
+    display: none;
+  }
+  .list li {
+    flex-shrink: 0;
+  }
 }
 </style>
