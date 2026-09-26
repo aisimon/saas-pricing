@@ -1,6 +1,4 @@
-// Researched 2026-09-26 from vendor pricing pages. Prices are USD list prices; GBP-only plans are converted at the
-// FX snapshot. G2 ratings come from search snippets (G2 blocks direct reads). See each product's sources and confidence note.
-export default [
+[
   {
     "id": "shiptheory",
     "name": "Shiptheory",
@@ -10,36 +8,44 @@ export default [
     "pricingModel": "subscription",
     "tiers": [
       {
-        "name": "Earth",
-        "price": 62,
-        "annual": 50,
+        "name": "Pluto",
+        "price": 25,
+        "annual": 19,
         "perSeat": false,
-        "quota": "£49/mo (£39 annual); 1,500 shipments a month, 1 user; 0.03 per shipment",
+        "quota": "£19/mo (£25 monthly); up to 250 shipments/month, 1 user, 1 channel, 1 carrier; £0.03 per shipment",
+        "highlights": ["1 sales channel", "1 carrier", "Email support"]
+      },
+      {
+        "name": "Earth",
+        "price": 49,
+        "annual": 39,
+        "perSeat": false,
+        "quota": "£39/mo (£49 monthly); up to 1,500 shipments/month, 1 user, 1 channel, 2 carriers; £0.03 per shipment",
         "highlights": ["1 sales channel", "2 carriers", "Email support"]
       },
       {
         "name": "Saturn",
-        "price": 150,
-        "annual": 125,
+        "price": 119,
+        "annual": 99,
         "perSeat": false,
-        "quota": "£119/mo (£99 annual); 3,000 shipments a month, 3 users; 0.03 per shipment",
-        "highlights": ["3 sales channels", "3 carriers", "Tailored onboarding"]
+        "quota": "£99/mo (£119 monthly); up to 3,000 shipments/month, 3 users, 3 channels, unlimited carriers; £0.03 per shipment",
+        "highlights": ["3 sales channels", "Unlimited carriers", "Tailored onboarding"]
       },
       {
         "name": "Jupiter",
-        "price": 325,
-        "annual": 275,
+        "price": 255,
+        "annual": 217,
         "perSeat": false,
-        "quota": "£255/mo (£217 annual); 8,000 shipments a month, 10 users; 0.02 per shipment",
-        "highlights": ["Premium channels and carriers", "10 users", "Tailored onboarding"]
+        "quota": "£217/mo (£255 monthly); up to 8,000 shipments/month, 10 users, unlimited channels/carriers; £0.02 per shipment",
+        "highlights": ["Unlimited channels and carriers", "10 users", "Phone support", "Tailored onboarding"]
       },
       {
         "name": "Cosmos",
-        "price": 750,
-        "annual": 550,
+        "price": 590,
+        "annual": 433,
         "perSeat": false,
-        "quota": "£590/mo (£433 annual); 20,000 shipments a month; 0.02 per shipment",
-        "highlights": ["ERP, API and WMS plan", "Unlimited channels and carriers", "Extended support"]
+        "quota": "£433/mo (£590 monthly); up to 20,000 shipments/month, unlimited users/channels/carriers; £0.02 per shipment",
+        "highlights": ["ERP, API and WMS plan", "Unlimited channels and carriers", "Branded tracking", "Extended support"]
       },
       {
         "name": "Enterprise",
@@ -54,7 +60,7 @@ export default [
       "regions": ["UK", "EU", "US"],
       "pricingBasis": "Monthly plan sized by shipment volume (20% off annually); bring your own carrier accounts",
       "cheapestPaidUSD": 62,
-      "entryShipments": 1500,
+      "entryShipments": 250,
       "usersIncluded": 1,
       "ukCarriers": ["Royal Mail", "Parcelforce", "DPD", "Evri", "DHL", "Whistl", "UPS", "FedEx"],
       "usCarriers": ["USPS", "UPS", "FedEx"],
@@ -69,7 +75,7 @@ export default [
     },
     "ratings": {
       "trustpilot": { "score": 4.8, "reviews": 380 },
-      "g2": { "score": 4.9, "reviews": 166 },
+      "g2": { "score": 4.8, "reviews": 166 },
       "capterra": { "score": 4.8, "reviews": 59 }
     },
     "scores": { "value": 4, "ease": 4, "depth": 4, "team": 3, "free": 1 },
@@ -77,9 +83,9 @@ export default [
     "api": true,
     "bestFor": "UK e-commerce brands that ship with their own Royal Mail, DPD or Evri accounts and want rules to pick the carrier automatically.",
     "strategy": "Monthly plans sized by shipment volume, with channel, carrier and user limits rising per tier; revenue comes from subscriptions rather than postage mark-up.",
-    "strengths": ["Deep UK carrier coverage", "Generous shipment allowance on the entry plan", "Excellent review scores"],
-    "weaknesses": ["No discounted postage of its own", "Entry plan limited to 1 user, 1 channel and 2 carriers", "No free plan (14-day trial only)"],
-    "confidence": "high - plans and GBP/USD prices read from shiptheory.com/pricing on 2026-09-26; the unlabelled per-shipment fee and whether prices exclude VAT are unclear; G2 rating from a search snippet",
+    "strengths": ["Deep UK carrier coverage", "Generous shipment allowance on entry plans", "Excellent review scores"],
+    "weaknesses": ["No discounted postage of its own", "Entry plan limited to 1 user, 1 channel and 1–2 carriers", "No free plan (14-day trial only)"],
+    "confidence": "high - plans and GBP prices read from shiptheory.com/pricing on 2026-09-26; USD converted at FX snapshot; G2 rating from search snippet",
     "sources": [
       "https://shiptheory.com/pricing",
       "https://uk.trustpilot.com/review/shiptheory.com",
@@ -106,24 +112,24 @@ export default [
         "price": 14.99,
         "annual": 11.99,
         "perSeat": false,
-        "quota": "From 50 shipments a month, 3 users; $39.99 at 500, $79.99 at 1,000, up to $174.99 at 5,000 (UK from £10)",
-        "highlights": ["Discounted carrier rates", "Unlimited store connections", "Rate shopping and basic automations"]
+        "quota": "From 50 shipments a month, 3 users; $29.99 at 100, $39.99 at 500, $79.99 at 1,000, $119.99 at 2,000, $174.99 at 5,000 (UK from £10)",
+        "highlights": ["Discounted carrier rates", "Unlimited store connections", "Rate shopping and basic automations", "Return labels"]
       },
       {
         "name": "Standard",
         "price": 29.99,
         "annual": 23.99,
         "perSeat": false,
-        "quota": "From 50 shipments a month, 10 users; $89.99 at 500, $149.99 at 1,000, up to $3,599.99 at 100,000 (UK from £25)",
-        "highlights": ["Use your own carrier accounts", "Returns portal and branded tracking", "Unlimited automations and API"]
+        "quota": "From 50 shipments a month, 10 users; $59.99 at 100, $89.99 at 500, $149.99 at 1,000, $174.99 at 2,000, $249.99 at 5,000, $349.99 at 7,500, $449.99 at 10,000, up to $3,599.99 at 100,000 (UK from £25)",
+        "highlights": ["Use your own carrier accounts", "Returns portal and branded tracking", "Unlimited automations and API", "Phone support"]
       },
       {
         "name": "Premium",
         "price": 349.99,
         "annual": 279.99,
         "perSeat": false,
-        "quota": "From 50 shipments a month, 15 users; $449.99 at 500, $599.99 at 1,000, up to $7,499.99 at 100,000 (UK from £270)",
-        "highlights": ["Advanced inventory and purchase orders", "Auto-routing and pick-to-tote", "Dedicated onboarding"]
+        "quota": "From 50 shipments a month, 15 users; $399.99 at 100, $449.99 at 500, $599.99 at 1,000, $699.99 at 2,000, $799.99 at 5,000, $949.99 at 7,500, $1,099.99 at 10,000, up to $7,499.99 at 100,000 (UK from £270)",
+        "highlights": ["Advanced inventory and purchase orders", "Auto-routing and pick-to-tote", "Dedicated onboarding", "Custom analytics"]
       }
     ],
     "metrics": {
@@ -144,8 +150,8 @@ export default [
       "apiAvailable": true
     },
     "ratings": {
-      "trustpilot": { "score": 3.5, "reviews": 698 },
-      "g2": { "score": 4.3, "reviews": 538 },
+      "trustpilot": { "score": 3.3, "reviews": 619 },
+      "g2": { "score": 4.3, "reviews": 587 },
       "capterra": { "score": 4.6, "reviews": 961 }
     },
     "scores": { "value": 3, "ease": 4, "depth": 5, "team": 4, "free": 2 },
@@ -175,15 +181,15 @@ export default [
         "name": "Starter",
         "price": 0,
         "perSeat": false,
-        "quota": "Up to 30 labels a month, 1 user; $0.05 per label on your own carrier accounts",
+        "quota": "Up to 30 labels a month, 1 user; 5¢ per label on your own carrier accounts",
         "highlights": ["Discounted carrier rates", "Unlimited store connections", "Automations and return labels"]
       },
       {
         "name": "Pro",
-        "price": 19,
+        "price": 17,
         "annual": 17,
         "perSeat": false,
-        "quota": "Up to 200 labels, 5 users; $29 at 500, $54 at 1,000, $79 at 2,500, $139 at 5,000, $199 at 10,000 (then $0.08 per label)",
+        "quota": "Up to 200 labels ($17/mo); $29 at 201–500, $54 at 501–1,000, $79 at 1,001–2,500, $139 at 2,501–5,000, $199 at 5,001–10,000; then $0.08 per label over 10,000; 5+ users",
         "highlights": ["Free own-carrier connections", "Branded tracking, emails and packing slips", "Chat and phone support"]
       },
       {
@@ -198,7 +204,7 @@ export default [
     "metrics": {
       "regions": ["US", "UK", "CA"],
       "pricingBasis": "Free plan up to 30 labels, then Pro priced by monthly label volume (10% off annually); API billed per label and per call",
-      "cheapestPaidUSD": 19,
+      "cheapestPaidUSD": 17,
       "entryShipments": 200,
       "usersIncluded": 5,
       "ukCarriers": ["Royal Mail", "Evri", "DPD", "UPS", "DHL"],
@@ -245,7 +251,7 @@ export default [
         "name": "Free",
         "price": 0,
         "perSeat": false,
-        "quota": "20 parcels a month, 1 user, 2 shops; Sendcloud rates only",
+        "quota": "20 parcels a month, 1 user, max. 2 shops; Sendcloud rates only",
         "highlights": ["Pre-negotiated rates with 70+ couriers", "Basic label printing"]
       },
       {
@@ -253,7 +259,7 @@ export default [
         "price": 11.92,
         "annual": 9.27,
         "perSeat": false,
-        "quota": "£9/mo (£7 annual) + £0.07–0.09 per label; 400 labels a month, 3 users",
+        "quota": "£7/mo (£9 monthly) + £0.07 per label; up to 400 labels/month, 3 users, 3 integrations",
         "highlights": ["Use your own courier contracts", "5 shipping rules", "Pack & Go and customs documents"]
       },
       {
@@ -261,7 +267,7 @@ export default [
         "price": 51.66,
         "annual": 41.07,
         "perSeat": false,
-        "quota": "£39/mo (£31 annual) + £0.06–0.08 per label; 1,000 labels a month, 5 users",
+        "quota": "£31/mo (£39 monthly) + £0.06 per label; up to 1,000 labels/month, 5 users, 5 integrations",
         "highlights": ["Branded tracking page", "Branded returns portal", "Phone support"]
       },
       {
@@ -269,7 +275,7 @@ export default [
         "price": 131.14,
         "annual": 104.65,
         "perSeat": false,
-        "quota": "£99/mo (£79 annual) + £0.05 per label; 10,000 labels a month, 10 users",
+        "quota": "£79/mo (£99 monthly) + £0.05 per label; up to 10,000 labels/month, 10 users, unlimited integrations",
         "highlights": ["Advanced returns", "Shipping analytics", "White label and unlimited rules"]
       },
       {
@@ -277,7 +283,7 @@ export default [
         "price": null,
         "perSeat": false,
         "custom": true,
-        "quota": "On request; £0.05 per label, 30,000 labels a month, unlimited users",
+        "quota": "On request; £0.05 per label, up to 30,000 labels a month, unlimited users",
         "highlights": ["Dynamic checkout", "Dedicated customer success manager"]
       },
       {
@@ -307,8 +313,8 @@ export default [
       "apiAvailable": true
     },
     "ratings": {
-      "trustpilot": { "score": 4.2, "reviews": 3974 },
-      "g2": { "score": 4.6, "reviews": 141 },
+      "trustpilot": { "score": 4.6, "reviews": 2600 },
+      "g2": { "score": 4.5, "reviews": 153 },
       "capterra": { "score": 4.0, "reviews": 97 }
     },
     "scores": { "value": 4, "ease": 4, "depth": 4, "team": 4, "free": 3 },
@@ -318,7 +324,7 @@ export default [
     "strategy": "Freemium entry, then low monthly plans that add a per-label fee and cap label volume, plus margin on pre-negotiated carrier rates.",
     "strengths": ["Very low entry price", "Wide UK and EU carrier choice with published rates", "Branded returns portal from Growth"],
     "weaknesses": ["Cannot ship from the US", "Per-label fees on top of the plan price", "Branded tracking and returns need Growth or above"],
-    "confidence": "high - GBP plans, label fees and caps read from sendcloud.com/en-uk/pricing on 2026-09-26 (USD converted at the FX snapshot); monthly-billing label fees read from page data; G2 rating from a search snippet",
+    "confidence": "high - GBP plans, label fees and caps read from sendcloud.com/en-uk/pricing on 2026-09-26 (USD converted at the FX snapshot); G2 rating from a search snippet",
     "sources": [
       "https://www.sendcloud.com/en-uk/pricing/",
       "https://uk.trustpilot.com/review/sendcloud.com",
@@ -374,7 +380,7 @@ export default [
     },
     "ratings": {
       "trustpilot": { "score": 2.0, "reviews": 309 },
-      "g2": { "score": 4.5, "reviews": 42 },
+      "g2": { "score": 4.5, "reviews": 47 },
       "capterra": { "score": 4.2, "reviews": 87 }
     },
     "scores": { "value": 5, "ease": 3, "depth": 4, "team": 4, "free": 5 },
@@ -405,7 +411,7 @@ export default [
         "name": "Free",
         "price": 0,
         "perSeat": false,
-        "quota": "50 shipments a month, 1 user; no own carrier accounts",
+        "quota": "Up to 50 shipments a month, 1 user; no own carrier accounts",
         "highlights": ["Discounted rates up to 91% off", "Import tax and duty calculator", "Return labels"]
       },
       {
@@ -413,7 +419,7 @@ export default [
         "price": 29,
         "annual": 23,
         "perSeat": false,
-        "quota": "500 shipments a month, 3 users, 1 own carrier account ($0.05 per label on it); UK £29",
+        "quota": "From $29/mo (UK from £29); up to 500 shipments a month, 3 users, 1 own carrier account ($0.05 per label on it)",
         "highlights": ["Live rates at checkout", "Shipping rules and automations", "Branded tracking page"]
       },
       {
@@ -421,7 +427,7 @@ export default [
         "price": 69,
         "annual": 55,
         "perSeat": false,
-        "quota": "2,500 shipments a month, 5 users, 2 own carrier accounts; UK £69",
+        "quota": "From $69/mo (UK from £69); up to 2,500 shipments a month, 5 users, 2 own carrier accounts",
         "highlights": ["Taxes and duties at checkout", "Prepaid return labels", "24/7 phone support"]
       },
       {
@@ -429,7 +435,7 @@ export default [
         "price": 99,
         "annual": 79,
         "perSeat": false,
-        "quota": "5,000 shipments, 8 users; $149 for 7,500 and $199 for 10,000; UK £99",
+        "quota": "From $99/mo (UK from £99); up to 5,000 shipments, 8 users; $149 for 7,500 and $199 for 10,000",
         "highlights": ["3PL fulfilment network add-on", "Personal onboarding", "Up to 12 users"]
       },
       {
@@ -460,7 +466,7 @@ export default [
     },
     "ratings": {
       "trustpilot": { "score": 1.6, "reviews": 697 },
-      "g2": { "score": 4.4, "reviews": 172 },
+      "g2": { "score": 4.4, "reviews": 183 },
       "capterra": { "score": 4.4, "reviews": 288 }
     },
     "scores": { "value": 4, "ease": 4, "depth": 4, "team": 3, "free": 4 },
@@ -474,7 +480,7 @@ export default [
     "sources": [
       "https://www.easyship.com/plans",
       "https://www.easyship.com/en-gb/couriers",
-      "https://www.trustpilot.com/review/easyship.com",
+      "https://www.trustpilot.com/review/www.easyship.com",
       "https://www.capterra.com/p/170399/Easyship/"
     ]
   },
