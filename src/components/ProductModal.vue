@@ -48,7 +48,7 @@ function minimumCell(tier) {
 const columns = computed(() => {
   if (!p.value) return []
   return [
-    { key: 'price', label: 'modal.price', num: true, cell: priceCell },
+    { key: 'price', label: p.value.priceUnit === 'account' ? 'modal.priceAccount' : 'modal.price', num: true, cell: priceCell },
     { key: 'annual', label: 'modal.annual', num: true, cell: annualCell },
     { key: 'minimum', label: 'modal.minimum', num: true, cell: minimumCell },
     { key: 'users', label: 'modal.users', num: false, cell: limitCell },

@@ -19,10 +19,18 @@ export const LOADED = shallowReactive(new Set())
 
 const byCategory = {}
 
+// A plan is priced per account exactly when perSeat is false; priceUnit must say the same for every plan.
+const unitMismatch = (p) =>
+  !['user', 'account'].includes(p.priceUnit) ||
+  p.tiers.some((tier) => !tier.custom && (tier.perSeat === false) !== (p.priceUnit === 'account'))
+
 function add(category, list, zh) {
   // Prices are converted from USD for display, so a record in any other currency would show wrong amounts.
   const nonUsd = list.filter((p) => p.currency !== 'USD').map((p) => p.id)
   if (nonUsd.length) throw new Error(`Product prices must be USD (currency: "USD"); check: ${nonUsd.join(', ')}`)
+  const badUnit = list.filter(unitMismatch).map((p) => p.id)
+  if (badUnit.length)
+    throw new Error(`priceUnit must be "user" or "account" and match each plan's perSeat; check: ${badUnit.join(', ')}`)
   byCategory[category] = list.map((p) => ({ ...p, zh: zh[p.id] }))
   for (const p of byCategory[category]) PRODUCT_BY_ID[p.id] = p
   // Keep PRODUCTS in category order regardless of which chunk lands first.

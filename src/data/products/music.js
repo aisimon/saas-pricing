@@ -2,6 +2,8 @@
 // PRICE CURRENCY RULE: every record has "currency": "USD", and every numeric price field (price, annual, minMonthly,
 // cheapestPaidUSD) must be in US dollars. Convert GBP/EUR/etc. with src/data/fx.js before writing; local-currency
 // amounts (e.g. "£49/mo") belong only in quota/highlight text, never in the numeric fields.
+// "priceUnit" is what one price buys: "user" (per seat) or "account" (one subscription regardless of team size).
+// It must agree with every plan's perSeat flag (perSeat: false <=> "account"), or the category refuses to load.
 // "lastUpdated" (YYYY-MM-DD) is the date the record's data was last checked; set it whenever you change the record.
 export default [
   {
@@ -12,6 +14,7 @@ export default [
     "category": "music",
     "pricingModel": "hybrid",
     "currency": "USD",
+    "priceUnit": "user",
     "lastUpdated": "2026-09-26",
     "tiers": [
       {
@@ -122,6 +125,7 @@ export default [
     "category": "music",
     "pricingModel": "credits",
     "currency": "USD",
+    "priceUnit": "user",
     "lastUpdated": "2026-09-26",
     "tiers": [
       {
@@ -225,6 +229,7 @@ export default [
     "category": "music",
     "pricingModel": "subscription",
     "currency": "USD",
+    "priceUnit": "user",
     "lastUpdated": "2026-09-26",
     "tiers": [
       {
@@ -329,6 +334,7 @@ export default [
     "category": "music",
     "pricingModel": "subscription",
     "currency": "USD",
+    "priceUnit": "user",
     "lastUpdated": "2026-09-26",
     "tiers": [
       {
@@ -455,6 +461,7 @@ export default [
     "category": "music",
     "pricingModel": "subscription",
     "currency": "USD",
+    "priceUnit": "user",
     "lastUpdated": "2026-09-26",
     "tiers": [
       {
@@ -556,6 +563,7 @@ export default [
     "category": "music",
     "pricingModel": "subscription",
     "currency": "USD",
+    "priceUnit": "user",
     "lastUpdated": "2026-09-26",
     "tiers": [
       {
@@ -669,6 +677,7 @@ export default [
     "category": "music",
     "pricingModel": "hybrid",
     "currency": "USD",
+    "priceUnit": "user",
     "lastUpdated": "2026-09-26",
     "tiers": [
       {
