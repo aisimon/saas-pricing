@@ -7,6 +7,7 @@ import { CATEGORIES, CATEGORY_BY_ID } from '../data/categories.js'
 import { entryPrice, hasFreeTier, reputation } from '../lib/pricing.js'
 import { FX } from '../data/fx.js'
 import ProductCard from './ProductCard.vue'
+import HeroSpotlight from './HeroSpotlight.vue'
 
 const search = ref(null)
 
@@ -83,11 +84,14 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
 
 <template>
   <section class="hero">
-    <h1>{{ t('hero.title') }}</h1>
-    <p class="hero-sub">{{ t('app.tagline') }}</p>
-    <p class="hero-stats mono">
-      {{ t('hero.stats', { n: PRODUCTS.length, c: CATEGORIES.length, date: FX.date }) }}
-    </p>
+    <div class="hero-copy">
+      <h1>{{ t('hero.title') }}</h1>
+      <p class="hero-sub">{{ t('app.tagline') }}</p>
+      <p class="hero-stats mono">
+        {{ t('hero.stats', { n: PRODUCTS.length, c: CATEGORIES.length, date: FX.date }) }}
+      </p>
+    </div>
+    <HeroSpotlight class="hero-aside" />
   </section>
 
   <section class="filters" :aria-label="t('filter.label')">
@@ -172,7 +176,20 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
 <style scoped>
 .hero {
   padding-block: 20px 28px;
-  max-width: 760px;
+  display: grid;
+  grid-template-columns: minmax(0, 760px) minmax(320px, 440px);
+  justify-content: space-between;
+  align-items: start;
+  gap: 24px 40px;
+}
+/* Below this width the panel would squeeze the headline, so it drops under it. */
+@media (max-width: 960px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hero-aside {
+    max-width: 560px;
+  }
 }
 .hero h1 {
   font-size: clamp(30px, 4.4vw, 46px);
