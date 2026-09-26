@@ -37,6 +37,26 @@ function limitCell(tier) {
   if (tier.freeSeats) bits.push(t('modal.freeSeats', { n: num(tier.freeSeats, state.locale) }))
   return bits.join(' · ') || '—'
 }
+function annualCell(tier) {
+  if (tier.annual != null) return money(tier.annual, state.currency, state.locale)
+  return tier.annualOnly ? t('modal.annualOnly') : '—'
+}
+function minimumCell(tier) {
+  return tier.minMonthly ? money(tier.minMonthly, state.currency, state.locale) : '—'
+}
+// Columns that would read "—" on every plan of this product are dropped.
+const columns = computed(() => {
+  if (!p.value) return []
+  return [
+    { key: 'price', label: 'modal.price', num: true, cell: priceCell },
+    { key: 'annual', label: 'modal.annual', num: true, cell: annualCell },
+    { key: 'minimum', label: 'modal.minimum', num: true, cell: minimumCell },
+    { key: 'users', label: 'modal.users', num: false, cell: limitCell },
+  ].filter((c) => p.value.tiers.some((tier) => c.cell(tier) !== '—'))
+})
+const showIncludes = computed(
+  () => !!p.value && p.value.tiers.some((_, i) => tierText(p.value, i, 'quota') || tierText(p.value, i, 'highlights')?.length),
+)
 </script>
 
 <template>
@@ -61,21 +81,15 @@ function limitCell(tier) {
             <thead>
               <tr>
                 <th>{{ t('modal.plan') }}</th>
-                <th class="num">{{ t('modal.price') }}</th>
-                <th class="num">{{ t('modal.annual') }}</th>
-                <th class="num">{{ t('modal.minimum') }}</th>
-                <th>{{ t('modal.users') }}</th>
-                <th>{{ t('modal.includes') }}</th>
+                <th v-for="c in columns" :key="c.key" :class="{ num: c.num }">{{ t(c.label) }}</th>
+                <th v-if="showIncludes">{{ t('modal.includes') }}</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="(tier, i) in p.tiers" :key="tier.name">
                 <th scope="row">{{ tier.name }}</th>
-                <td class="num tabular">{{ priceCell(tier) }}</td>
-                <td class="num tabular">{{ tier.annual != null ? money(tier.annual, state.currency, state.locale) : tier.annualOnly ? t('modal.annualOnly') : '—' }}</td>
-                <td class="num tabular">{{ tier.minMonthly ? money(tier.minMonthly, state.currency, state.locale) : '—' }}</td>
-                <td>{{ limitCell(tier) }}</td>
-                <td class="inc">
+                <td v-for="c in columns" :key="c.key" :class="{ num: c.num, tabular: c.num }">{{ c.cell(tier) }}</td>
+                <td v-if="showIncludes" class="inc">
                   <span class="quota">{{ tierText(p, i, 'quota') }}</span>
                   <ul>
                     <li v-for="h in tierText(p, i, 'highlights')" :key="h">{{ h }}</li>
