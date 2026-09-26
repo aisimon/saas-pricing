@@ -207,6 +207,55 @@ export const CATEGORIES = [
       },
     ],
   },
+  {
+    id: 'shipping',
+    glyph: '▣',
+    name: { en: 'Shipping & fulfilment', zh: '物流及訂單履行' },
+    lens: {
+      en: 'Priced by parcel volume, not seats. Compared on cost per label, UK and US carrier coverage, discounted rates, automation, returns and integrations.',
+      zh: '按寄件量而非席位定價。按每張運單成本、英美承運商覆蓋、折扣運費、自動化、退貨及平台整合比較。',
+    },
+    margin: 0.7,
+    // Plans are bought per merchant account, so forecasts count accounts rather than seats.
+    billingUnit: 'account',
+    cardMetrics: ['regions', 'entryShipments', 'discountedRates'],
+    metrics: [
+      m('regions', 'list', null, 'Markets', '市場'),
+      m('pricingBasis', 'text', null, 'Pricing basis', '定價基礎'),
+      m('cheapestPaidUSD', 'money', 'lower', 'Cheapest paid plan', '最便宜付費方案'),
+      m('entryShipments', 'num', 'higher', 'Shipments on cheapest paid plan', '最便宜付費方案寄件量'),
+      m('usersIncluded', 'num', 'higher', 'Users on cheapest paid plan', '最便宜付費方案用戶數'),
+      m('ukCarriers', 'list', 'higher', 'Key UK carriers', '主要英國承運商'),
+      m('usCarriers', 'list', 'higher', 'Key US carriers', '主要美國承運商'),
+      m('discountedRates', 'bool', 'true', 'Discounted postage rates', '折扣運費'),
+      m('ownCarrierAccounts', 'bool', 'true', 'Use your own carrier accounts', '可用自有承運商帳戶'),
+      m('automationRules', 'bool', 'true', 'Automation rules', '自動化規則'),
+      m('brandedTracking', 'bool', 'true', 'Branded tracking', '品牌化追蹤頁面'),
+      m('returnsPortal', 'bool', 'true', 'Returns portal', '退貨入口'),
+      m('inventory', 'bool', 'true', 'Inventory management', '庫存管理'),
+      m('integrations', 'score', 'higher', 'Store & marketplace integrations', '網店及平台整合'),
+      m('apiAvailable', 'bool', 'true', 'Developer API', '開發者 API'),
+    ],
+    derived: [
+      {
+        id: 'perLabel',
+        label: { en: 'Lowest subscription cost per label', zh: '每張運單訂閱成本最低' },
+        better: 'lower',
+        type: 'money',
+        value: (p) =>
+          typeof p.metrics.entryShipments === 'number' && p.metrics.cheapestPaidUSD
+            ? p.metrics.cheapestPaidUSD / p.metrics.entryShipments
+            : null,
+      },
+      {
+        id: 'carriers',
+        label: { en: 'Most UK + US carriers', zh: '英美承運商最多' },
+        better: 'higher',
+        type: 'num',
+        value: (p) => (p.metrics.ukCarriers?.length ?? 0) + (p.metrics.usCarriers?.length ?? 0) || null,
+      },
+    ],
+  },
 ]
 
 export const CATEGORY_BY_ID = Object.fromEntries(CATEGORIES.map((c) => [c.id, c]))
