@@ -78,7 +78,7 @@ export function reputation(p) {
   return weight ? sum / weight : null
 }
 
-export function growthSeries(p, choice, billing, margin, { start, rate, churn, months }) {
+export function growthSeries(p, choice, billing, margin, { start, rate, churn, months }, perAccount = false) {
   const out = []
   let users = start
   let cumGp = 0
@@ -86,7 +86,8 @@ export function growthSeries(p, choice, billing, margin, { start, rate, churn, m
   for (let m = 1; m <= months; m++) {
     if (m > 1) users = users * (1 + (rate - churn) / 100)
     const seats = Math.max(1, Math.round(users))
-    const revenue = costAt(p, seats, choice, billing)
+    const unit = perAccount ? costAt(p, 1, choice, billing) : null
+    const revenue = perAccount ? (unit == null ? null : unit * seats) : costAt(p, seats, choice, billing)
     const gp = revenue == null ? null : revenue * margin
     if (revenue != null) {
       cumGp += gp

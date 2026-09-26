@@ -8,8 +8,10 @@ import music from './music.js'
 import musicZh from './music.zh.js'
 import image from './image.js'
 import imageZh from './image.zh.js'
+import shipping from './shipping.js'
+import shippingZh from './shipping.zh.js'
 
-const zh = { ...leaveZh, ...aiAssistantZh, ...aiVideoZh, ...musicZh, ...imageZh }
+const zh = { ...leaveZh, ...aiAssistantZh, ...aiVideoZh, ...musicZh, ...imageZh, ...shippingZh }
 
-export const PRODUCTS = [...leave, ...aiAssistant, ...aiVideo, ...music, ...image].map((p) => ({ ...p, zh: zh[p.id] }))
+export const PRODUCTS = [...leave, ...aiAssistant, ...aiVideo, ...music, ...image, ...shipping].map((p) => ({ ...p, zh: zh[p.id] }))
 export const PRODUCT_BY_ID = Object.fromEntries(PRODUCTS.map((p) => [p.id, p]))

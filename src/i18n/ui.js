@@ -5,12 +5,14 @@ export const LOCALES = [
 ]
 
 const en = {
+  'sample.shipping': 'Shipping: UK vs US',
+  'fc.accountNote': 'Shipping plans are billed per merchant account, so for those products the user count is treated as paying accounts.',
   'cost.total': 'Total / month',
   'cost.perUser': 'Per user / month',
   'grp.show': 'Show {n} rows',
   'grp.hide': 'Hide',
   'hero.title': 'How SaaS products price, and what they could earn',
-  'hero.stats': '{n} products · {c} industries · 9 currencies · researched {date}',
+  'hero.stats': '{n} products · {c} industries · 9 currencies · updated {date}',
   'filter.label': 'Filters',
   'unlimited': 'Unlimited',
   'unit.s': 's',
@@ -185,6 +187,8 @@ const en = {
 }
 
 const zhHant = {
+  'sample.shipping': '物流：英國對美國',
+  'fc.accountNote': '物流方案按商戶帳戶收費，因此這些產品的用戶數會視為付費帳戶數。',
   'cost.total': '每月總額',
   'cost.perUser': '每用戶每月',
   'grp.show': '顯示 {n} 項',
@@ -365,6 +369,8 @@ const zhHant = {
 }
 
 const zhHans = {
+  'sample.shipping': '物流：英国对美国',
+  'fc.accountNote': '物流方案按商户账户收费，因此这些产品的用户数会视为付费账户数。',
   'cost.total': '每月总额',
   'cost.perUser': '每用户每月',
   'grp.show': '显示 {n} 项',

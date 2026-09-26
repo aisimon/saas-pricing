@@ -32,6 +32,7 @@ const SAMPLES = [
   { key: 'sample.assistants', ids: ['chatgpt', 'claude', 'google_gemini', 'perplexity'] },
   { key: 'sample.video', ids: ['runway', 'kling_ai', 'heygen', 'google_flow_veo'] },
   { key: 'sample.creator', ids: ['chatgpt', 'heygen', 'suno', 'canva'] },
+  { key: 'sample.shipping', ids: ['shiptheory', 'shipstation', 'shippo', 'sendcloud', 'veeqo', 'pirate_ship'] },
 ]
 
 // ---------- plan choice & money helpers ----------
@@ -313,7 +314,10 @@ const fmtUsers = (v) => `${fnum(v, { compact: true })}`
 
 // ---------- forecast ----------
 const forecasts = computed(() =>
-  items.value.map((p) => ({ p, rows: growthSeries(p, choiceOf(p), state.billing, marginOf(p), state.growth) })),
+  items.value.map((p) => ({
+    p,
+    rows: growthSeries(p, choiceOf(p), state.billing, marginOf(p), state.growth, CATEGORY_BY_ID[p.category].billingUnit === 'account'),
+  })),
 )
 const monthXs = computed(() => Array.from({ length: state.growth.months }, (_, i) => i + 1))
 const fcSeries = computed(() =>
@@ -530,6 +534,7 @@ function setGrowth(key, e, min, max) {
         <div>
           <h2>{{ t('sec.forecast') }}</h2>
           <p class="sub">{{ t('sec.forecastSub') }}</p>
+          <p v-if="items.some((p) => CATEGORY_BY_ID[p.category].billingUnit === 'account')" class="sub">{{ t('fc.accountNote') }}</p>
         </div>
       </div>
       <div class="panel">

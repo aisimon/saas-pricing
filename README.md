@@ -1,6 +1,6 @@
 # Pricing Lens
 
-A Vue 3 app for comparing how SaaS products price, how well they are rated, and what they could earn. The gallery holds 34 products in five industries:
+A Vue 3 app for comparing how SaaS products price, how well they are rated, and what they could earn. The gallery holds 42 products in six industries:
 
 | Category | Products |
 | --- | --- |
@@ -9,6 +9,7 @@ A Vue 3 app for comparing how SaaS products price, how well they are rated, and 
 | AI video generation | Runway, Pika, Luma Dream Machine, Kling AI, Synthesia, HeyGen, Google Flow (Veo) |
 | Music composing | Suno, Udio, AIVA, Soundraw, Boomy, Mubert, Beatoven.ai |
 | Image editing | Adobe Photoshop, Canva, Midjourney, Picsart, Photoroom, Pixlr, Fotor, Affinity by Canva |
+| Shipping & fulfilment (UK and US) | Shiptheory, ShipStation, Shippo, Sendcloud, Veeqo, Easyship, Pirate Ship, ShippingEasy |
 
 ## Features
 
@@ -42,3 +43,5 @@ npm run build    # production build in dist/
 - `vacation-tracker-products.js`: the original leave-tracker dataset this project started from.
 
 Prices and ratings were researched on 2026-09-26, mostly from third-party pricing guides and search snippets, because many vendor and review sites could not be fetched directly. Each product records its sources and a confidence note, and prices marked ≈ are estimates. Trustpilot scores for mass-market consumer apps skew low, so the reputation index blends Trustpilot, G2 and Capterra, weighted by review count. Most AI assistant ratings could not be found and are shown as missing rather than guessed. Editorial scores and gross margins are estimates for comparison, not vendor figures.
+
+The shipping category was added without live research: vendor sites and web search were unavailable, so its prices come from prior knowledge, are all marked as estimates, and its ratings are left empty until they can be verified. Shipping plans are priced by parcel volume rather than seats, so that category compares cost per label, and the forecast counts merchant accounts for those products.
